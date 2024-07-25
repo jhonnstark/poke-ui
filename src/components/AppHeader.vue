@@ -9,7 +9,7 @@
         class=""
         contain
         height="40px"
-        src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/001.png"
+        src="@/assets/pokeapi.png"
       ></v-img>
     </v-app-bar-title>
     <v-spacer></v-spacer>

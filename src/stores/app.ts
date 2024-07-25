@@ -10,9 +10,8 @@ export const useAppStore = defineStore('app', () => {
   const previous = ref(null)
   const cardPokemon = computed(() => {
     return pokemon.value.map((poke: Pokemon): PokemonItem => {
-      const id = poke.url.split('/')[6].padStart(3, '0')
-      const imageUrl = `https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/${id}.png`
-      // const proxyUrl = `http://localhost/image-proxy?url=${encodeURIComponent(imageUrl)}`;
+      const id = poke.url.split('/')[1]
+      const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
       return {
         name: poke.name,
         url: poke.url,
@@ -25,8 +24,7 @@ export const useAppStore = defineStore('app', () => {
 
   async function setPokemon() {
     const response = await fetchPokemon()
-    console.log('response', response.data.data);
-    pokemon.value = response.data.data.results
+    pokemon.value = response.data.results
     next.value = response.data.data.next
     previous.value = response.data.data.previous
   }

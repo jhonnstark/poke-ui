@@ -8,6 +8,10 @@
   const { setPokemon } = appStore
   const { cardPokemon } = storeToRefs(appStore)
 
+  // function addFavorite(pokemon: string) {
+  //   appStore.addFavorite(pokemon)
+  // }
+
   onBeforeMount(async () => {
     console.log('PokemonList mounted')
     await setPokemon()
@@ -41,6 +45,14 @@
           max-width="344"
           outlined
         >
+          <template v-slot:append>
+            <v-icon
+              icon="mdi-heart-outline"
+              color="red-lighten-1"
+              @click="addFavorite(pokemon.id)"
+            ></v-icon>
+          </template>
+
           <v-img
             class="white--text align-end"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
@@ -51,12 +63,9 @@
               {{ pokemon.name }}
             </v-card-title>
           </v-img>
-          <v-card-text>
-            Pikachu, an Electric type Pokémon, is the most well-known and
-            recognizable Pokémon.
-          </v-card-text>
+
           <v-card-actions>
-            <v-btn color="deep-purple accent-4">Detalles</v-btn>
+            <v-btn color="blue-lighten-3 accent-4">Detalles</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
