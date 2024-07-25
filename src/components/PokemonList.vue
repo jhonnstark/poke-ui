@@ -5,12 +5,13 @@
 
   const { t } = useI18n()
   const appStore = useAppStore()
-  const { setPokemon } = appStore
+  const { setPokemon, addFavorite } = appStore
   const { cardPokemon } = storeToRefs(appStore)
 
-  // function addFavorite(pokemon: string) {
-  //   appStore.addFavorite(pokemon)
-  // }
+  async function toggleFavorite(pokemon: string) {
+    console.log('toggleFavorite', pokemon)
+    await addFavorite(pokemon)
+  }
 
   onBeforeMount(async () => {
     console.log('PokemonList mounted')
@@ -47,9 +48,9 @@
         >
           <template v-slot:append>
             <v-icon
-              icon="mdi-heart-outline"
               color="red-lighten-1"
-              @click="addFavorite(pokemon.id)"
+              icon="mdi-heart-outline"
+              @click="toggleFavorite(pokemon.id)"
             ></v-icon>
           </template>
 

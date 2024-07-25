@@ -2,7 +2,7 @@
 import { Pokemon, PokemonItem } from '@/types/pokemon'
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { fetchPokemon } from '@/api';
+import { fetchPokemon, saveFavorite } from '@/api';
 
 export const useAppStore = defineStore('app', () => {
   const pokemon = ref([])
@@ -21,13 +21,18 @@ export const useAppStore = defineStore('app', () => {
     })
   })
 
-
   async function setPokemon() {
     const response = await fetchPokemon()
+    console.log('response', response)
     pokemon.value = response.data.results
-    next.value = response.data.data.next
-    previous.value = response.data.data.previous
+    next.value = response.data.next
+    previous.value = response.data.previous
   }
 
-  return { pokemon, setPokemon, cardPokemon, next, previous }
+  async function addFavorite(pokemon: string) {
+    const response = await saveFavorite(pokemon)
+    console.log('response', response)
+  }
+
+  return { pokemon, setPokemon, cardPokemon, next, previous, addFavorite }
 });
