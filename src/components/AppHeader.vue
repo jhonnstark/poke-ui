@@ -15,7 +15,6 @@
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-xs-only">
       <v-btn router text="Home" to="/">Home</v-btn>
-      <v-btn router text="favorites" to="/favorites">Favorites</v-btn>
     </v-toolbar-items>
   </v-app-bar>
 </template>
