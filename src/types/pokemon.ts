@@ -12,3 +12,13 @@ export type PokemonItem = {
   id: number;
   is_favorite: boolean;
 }
+
+export type PokemonDetails = {
+  id: any;
+  name: string;
+  img: string;
+  height: string;
+  weight: string;
+  abilities: Array<any>;
+  is_favorito?: boolean;
+}

@@ -6,14 +6,14 @@ const appStore = useAppStore()
 const { search } = storeToRefs(appStore)
 
 function goHome() {
-  console.log('Go to Home')
+  search.value = ''
 }
 </script>
 
 <template>
   <v-container>
     <v-row v-if="search.name">
-      <v-col cols="12" md="6">
+      <v-col cols="6" md="6">
         <v-card class="mx-auto" max-width="400">
           <v-img
             class="white--text align-end"
@@ -21,19 +21,28 @@ function goHome() {
             height="200px"
             :src="search.img"
           >
-            <v-card-title>{{ search.name }}</v-card-title>
+            <v-card-title class="text-capitalize">{{ search.name }}</v-card-title>
           </v-img>
+          <v-card-subtitle class="mt-3">Types:</v-card-subtitle>
           <v-card-text>
-            <v-card-subtitle>Types:</v-card-subtitle>
-            <v-chip v-for="type in search.types" :key="type">
+            <v-chip v-for="type in search.types" :key="type" color="blue-lighten-5">
               {{ type.type.name }}
             </v-chip>
-            <div>Height: {{ search.height }} m</div>
-            <div>Weight: {{ search.weight }} kg</div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <v-col cols="6" md="6">
+        <v-card class="mx-auto" max-width="400" variant="elevated">
+          <v-card-text>
+            <p class="text-subtitle-1 text-light-green-darken-1">Height: </p>
+            <div class="text-h5 mb-2"> {{ search.height }} m</div>
+            <div class="text-subtitle-1 text-light-green-darken-1">Weight: </div>
+            <div class="text-h5 mb-4">{{ search.weight }} kg</div>
 
-            <div v-for="ability in search.abilities" :key="ability">
-              {{ ability }}
-            </div>
+            <div class="text-subtitle-1 text-blue-lighten-1">Abilities</div>
+            <p v-for="ability in search.abilities" :key="ability" class="text-h5 mb-2 text-capitalize">
+              {{ ability.ability.name }}
+            </p>
           </v-card-text>
         </v-card>
       </v-col>

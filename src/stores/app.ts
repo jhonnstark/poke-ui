@@ -1,5 +1,5 @@
 // Utilities
-import { Pokemon, PokemonItem } from '@/types/pokemon'
+import { Pokemon, PokemonItem, PokemonDetails } from '@/types/pokemon'
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import {
@@ -14,7 +14,7 @@ export const useAppStore = defineStore('app', () => {
   const pokemon: Ref<Pokemon[]> = ref([])
   const next = ref(null)
   const previous = ref(null)
-  const search: Ref<Pokemon | string> = ref('')
+  const search: Ref<PokemonDetails | string> = ref('')
 
   const cardPokemon = computed(() => {
     return pokemon.value.map((poke: Pokemon): PokemonItem => {
